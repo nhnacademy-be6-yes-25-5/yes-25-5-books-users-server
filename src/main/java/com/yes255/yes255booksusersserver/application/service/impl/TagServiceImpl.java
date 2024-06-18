@@ -1,8 +1,8 @@
 package com.yes255.yes255booksusersserver.application.service.impl;
 
 import com.yes255.yes255booksusersserver.application.service.TagService;
-import com.yes255.yes255booksusersserver.persistance.domain.Tag;
-import com.yes255.yes255booksusersserver.persistance.repository.JpaTagRepository;
+import com.yes255.yes255booksusersserver.persistence.domain.Tag;
+import com.yes255.yes255booksusersserver.persistence.repository.JpaTagRepository;
 import com.yes255.yes255booksusersserver.presentation.dto.request.CreateTagRequest;
 import com.yes255.yes255booksusersserver.presentation.dto.request.UpdateTagRequest;
 import com.yes255.yes255booksusersserver.presentation.dto.response.TagResponse;
@@ -41,15 +41,7 @@ public class TagServiceImpl implements TagService {
     @Override
     public TagResponse findTag(Long tagId) {
 
-        if(Objects.isNull(tagId)) {
-            throw new IllegalArgumentException("tagId must not be null");
-        }
-
-        Tag tag = jpaTagRepository.findById(tagId).orElse(null);
-
-        if(Objects.isNull(tag)) {
-            throw new IllegalArgumentException("tagId " + tagId + " not found");
-        }
+        Tag tag = jpaTagRepository.findById(tagId).orElseThrow(() -> new IllegalArgumentException("Tag not found"));
 
         return toResponse(tag);
     }
@@ -63,6 +55,7 @@ public class TagServiceImpl implements TagService {
     @Transactional
     @Override
     public TagResponse updateTag(UpdateTagRequest updateTagRequest) {
+
         if(Objects.isNull(updateTagRequest)) {
             throw new IllegalArgumentException("updateTagRequest must not be null");
         }
@@ -83,5 +76,4 @@ public class TagServiceImpl implements TagService {
 
         jpaTagRepository.deleteById(tagId);
     }
-
 }

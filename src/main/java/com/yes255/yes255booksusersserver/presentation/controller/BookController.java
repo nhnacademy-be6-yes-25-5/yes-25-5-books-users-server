@@ -9,6 +9,7 @@ import com.yes255.yes255booksusersserver.presentation.dto.request.UpdateBookRequ
 import com.yes255.yes255booksusersserver.presentation.dto.response.BookCategoryResponse;
 import com.yes255.yes255booksusersserver.presentation.dto.response.BookResponse;
 import com.yes255.yes255booksusersserver.presentation.dto.response.BookTagResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,7 @@ public class BookController {
     }
 
     @PostMapping("/books")
-    public ResponseEntity<BookResponse> create(@RequestBody CreateBookRequest request, @RequestParam(value = "categoryIdList") List<Long> categoryIdList, @RequestParam(value = "tagIdList", required = false) List<Long> tagIdList ) {
+    public ResponseEntity<BookResponse> create(@RequestBody @Valid CreateBookRequest request, @RequestParam(value = "categoryIdList") List<Long> categoryIdList, @RequestParam(value = "tagIdList", required = false) List<Long> tagIdList ) {
 
         BookResponse response = bookService.createBook(request);
 
@@ -52,7 +53,7 @@ public class BookController {
     }
 
     @PutMapping("/books")
-    public ResponseEntity<BookResponse> update(@RequestBody UpdateBookRequest request, @RequestParam(value = "categoryIdList") List<Long> categoryIdList, @RequestParam(value = "tagIdList", required = false) List<Long> tagIdList ) {
+    public ResponseEntity<BookResponse> update(@RequestBody @Valid UpdateBookRequest request, @RequestParam(value = "categoryIdList") List<Long> categoryIdList, @RequestParam(value = "tagIdList", required = false) List<Long> tagIdList ) {
 
         List<BookCategoryResponse> bookCategoryList = bookCategoryService.findBookCategoryByBookId(request.bookId());
         List<BookTagResponse> bookTagList = bookTagService.findBookTagByBookId(request.bookId());

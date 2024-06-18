@@ -1,14 +1,50 @@
 package com.yes255.yes255booksusersserver.presentation.dto.request;
 
-import com.yes255.yes255booksusersserver.persistance.domain.Book;
+import com.yes255.yes255booksusersserver.persistence.domain.Book;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-public record UpdateBookRequest(long bookId, String bookIsbn, String bookName, String bookDescription,
-                                String bookAuthor, String bookPublisher, Date bookPublishDate,
-                                BigDecimal bookPrice, BigDecimal bookSellingPrice, String bookImage,
-                                Integer quantity, Integer reviewCount, Integer hitsCount, Integer searchCount) {
+public record UpdateBookRequest(
+        @NotNull Long bookId,
+
+        @NotBlank
+        @Size(min=10, max = 13)
+        String bookIsbn,
+
+        @NotBlank
+        String bookName,
+
+        String bookDescription,
+
+        String bookAuthor,
+
+        String bookPublisher,
+
+        @PastOrPresent
+        Date bookPublishDate,
+
+        @NotNull
+        BigDecimal bookPrice,
+
+        @NotNull
+        BigDecimal bookSellingPrice,
+
+        String bookImage,
+
+        @NotNull
+        Integer quantity,
+
+        Integer reviewCount,
+
+        Integer hitsCount,
+
+        Integer searchCount
+) {
     public Book toEntity() {
         return Book.builder()
                 .bookId(bookId)

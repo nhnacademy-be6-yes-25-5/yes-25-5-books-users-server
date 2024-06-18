@@ -1,8 +1,8 @@
 package com.yes255.yes255booksusersserver.application.service.impl;
 
 import com.yes255.yes255booksusersserver.application.service.UserService;
-import com.yes255.yes255booksusersserver.persistance.domain.*;
-import com.yes255.yes255booksusersserver.persistance.repository.*;
+import com.yes255.yes255booksusersserver.persistence.domain.*;
+import com.yes255.yes255booksusersserver.persistence.repository.*;
 import com.yes255.yes255booksusersserver.presentation.dto.request.CreateUserRequest;
 import com.yes255.yes255booksusersserver.presentation.dto.response.CreateUserResponse;
 import jakarta.transaction.Transactional;

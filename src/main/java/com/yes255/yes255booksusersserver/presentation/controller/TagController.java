@@ -4,6 +4,7 @@ import com.yes255.yes255booksusersserver.application.service.TagService;
 import com.yes255.yes255booksusersserver.presentation.dto.request.CreateTagRequest;
 import com.yes255.yes255booksusersserver.presentation.dto.request.UpdateTagRequest;
 import com.yes255.yes255booksusersserver.presentation.dto.response.TagResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,12 +28,12 @@ public class TagController {
     }
 
     @PostMapping("/tags")
-    public ResponseEntity<TagResponse> create(@RequestBody CreateTagRequest createTagRequest) {
+    public ResponseEntity<TagResponse> create(@RequestBody @Valid CreateTagRequest createTagRequest) {
         return ResponseEntity.ok(tagService.createTag(createTagRequest));
     }
 
     @PutMapping("/tags")
-    public ResponseEntity<TagResponse> update(@RequestBody UpdateTagRequest updateTagRequest) {
+    public ResponseEntity<TagResponse> update(@RequestBody @Valid UpdateTagRequest updateTagRequest) {
         return ResponseEntity.ok(tagService.updateTag(updateTagRequest));
     }
 

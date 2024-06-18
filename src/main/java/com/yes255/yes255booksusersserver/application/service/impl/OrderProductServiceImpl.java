@@ -2,8 +2,8 @@ package com.yes255.yes255booksusersserver.application.service.impl;
 
 
 import com.yes255.yes255booksusersserver.application.service.OrderProductService;
-import com.yes255.yes255booksusersserver.persistance.repository.JpaOrderProductRepository;
-import com.yes255.yes255booksusersserver.persistance.domain.OrderProduct;
+import com.yes255.yes255booksusersserver.persistence.repository.JpaOrderProductRepository;
+import com.yes255.yes255booksusersserver.persistence.domain.OrderProduct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

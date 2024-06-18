@@ -4,6 +4,7 @@ import com.yes255.yes255booksusersserver.application.service.CategoryService;
 import com.yes255.yes255booksusersserver.presentation.dto.request.CreateCategoryRequest;
 import com.yes255.yes255booksusersserver.presentation.dto.request.UpdateCategoryRequest;
 import com.yes255.yes255booksusersserver.presentation.dto.response.CategoryResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,12 +38,12 @@ public class CategoryController {
     }
 
     @PostMapping("/categories")
-    public ResponseEntity<CategoryResponse> create(@RequestBody CreateCategoryRequest createCategoryRequest) {
+    public ResponseEntity<CategoryResponse> create(@RequestBody @Valid CreateCategoryRequest createCategoryRequest) {
         return ResponseEntity.ok(categoryService.createCategory(createCategoryRequest));
     }
 
     @PutMapping("/categories")
-    public ResponseEntity<CategoryResponse> update(@RequestBody UpdateCategoryRequest updateCategoryRequest) {
+    public ResponseEntity<CategoryResponse> update(@RequestBody @Valid UpdateCategoryRequest updateCategoryRequest) {
         return ResponseEntity.ok(categoryService.updateCategory(updateCategoryRequest));
     }
 

@@ -1,4 +1,4 @@
-package com.yes255.yes255booksusersserver.persistance.domain;
+package com.yes255.yes255booksusersserver.persistence.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -15,7 +15,7 @@ public class Likes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "likes_id")
-    private Long LikesId;
+    private Long likesId;
 
     @Column(name = "likes_status")
     private boolean likesStatus;
@@ -28,7 +28,7 @@ public class Likes {
 
     @Builder
     public Likes(Long likesId, boolean likesStatus, Book book, User user) {
-        LikesId = likesId;
+        this.likesId = likesId;
         this.likesStatus = likesStatus;
         this.book = book;
         this.user = user;

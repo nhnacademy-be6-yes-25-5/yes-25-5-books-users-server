@@ -1,10 +1,7 @@
-package com.yes255.yes255booksusersserver.persistance.domain;
+package com.yes255.yes255booksusersserver.persistence.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

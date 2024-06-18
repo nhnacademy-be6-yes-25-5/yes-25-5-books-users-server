@@ -9,16 +9,10 @@ import java.util.List;
 public interface CategoryService {
 
     CategoryResponse createCategory(CreateCategoryRequest createCategoryRequest);
-
     CategoryResponse findCategory(long categoryId);
-
     List<CategoryResponse> findAllCategories();
-
     CategoryResponse updateCategory(UpdateCategoryRequest updateCategoryRequest);
-
     void deleteCategory(long categoryId);
-
     List<CategoryResponse> findRootCategories();
-
     List<CategoryResponse> findCategoryByParentCategoryId(long parentCategoryId);
 }

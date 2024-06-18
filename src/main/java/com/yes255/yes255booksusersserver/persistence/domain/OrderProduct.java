@@ -1,4 +1,4 @@
-package com.yes255.yes255booksusersserver.persistance.domain;
+package com.yes255.yes255booksusersserver.persistence.domain;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,6 +1,5 @@
-package com.yes255.yes255booksusersserver.persistance.domain;
+package com.yes255.yes255booksusersserver.persistence.domain;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Getter;

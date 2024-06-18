@@ -1,7 +1,6 @@
 package com.yes255.yes255booksusersserver.application.service;
 
-import com.yes255.yes255booksusersserver.persistance.domain.Address;
-import com.yes255.yes255booksusersserver.persistance.domain.UserAddress;
+import com.yes255.yes255booksusersserver.persistence.domain.UserAddress;
 
 import java.util.List;
 

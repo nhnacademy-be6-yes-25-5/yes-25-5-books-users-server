@@ -1,12 +1,12 @@
 package com.yes255.yes255booksusersserver.application.service.impl;
 
 import com.yes255.yes255booksusersserver.application.service.LikesService;
-import com.yes255.yes255booksusersserver.persistance.domain.Book;
-import com.yes255.yes255booksusersserver.persistance.domain.Likes;
-import com.yes255.yes255booksusersserver.persistance.domain.User;
-import com.yes255.yes255booksusersserver.persistance.repository.JpaBookRepository;
-import com.yes255.yes255booksusersserver.persistance.repository.JpaLikesRepository;
-import com.yes255.yes255booksusersserver.persistance.repository.JpaUserRepository;
+import com.yes255.yes255booksusersserver.persistence.domain.Book;
+import com.yes255.yes255booksusersserver.persistence.domain.Likes;
+import com.yes255.yes255booksusersserver.persistence.domain.User;
+import com.yes255.yes255booksusersserver.persistence.repository.JpaBookRepository;
+import com.yes255.yes255booksusersserver.persistence.repository.JpaLikesRepository;
+import com.yes255.yes255booksusersserver.persistence.repository.JpaUserRepository;
 import com.yes255.yes255booksusersserver.presentation.dto.request.CreateLikesRequest;
 import com.yes255.yes255booksusersserver.presentation.dto.request.UpdateLikesRequest;
 import com.yes255.yes255booksusersserver.presentation.dto.response.LikesResponse;
@@ -37,10 +37,8 @@ public class LikesServiceImpl implements LikesService {
     @Override
     public List<LikesResponse> findLikeByUserId(Long userId) {
 
-        User user = jpaUserRepository.findById(userId).orElse(null);
-        if(user == null) {
-            throw new IllegalArgumentException("User not found");
-        }
+        User user = jpaUserRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
         return jpaLikesRepository.findByUser(user).stream().map(this::toResponse).toList();
     }
@@ -49,10 +47,7 @@ public class LikesServiceImpl implements LikesService {
     @Override
     public List<LikesResponse> findLikeByBookId(Long bookId) {
 
-        Book book = jpaBookRepository.findById(bookId).orElse(null);
-        if(book == null) {
-            throw new IllegalArgumentException("Book not found");
-        }
+        Book book = jpaBookRepository.findById(bookId).orElseThrow(() -> new IllegalArgumentException("Book not found"));
 
         return jpaLikesRepository.findByBook(book).stream().map(this::toResponse).toList();
     }
@@ -61,16 +56,10 @@ public class LikesServiceImpl implements LikesService {
     @Override
     public LikesResponse createLike(CreateLikesRequest request) {
 
-        Book book = jpaBookRepository.findById(request.bookId()).orElse(null);
-        User user = jpaUserRepository.findById(request.userId()).orElse(null);
-
-        if(book == null) {
-            throw new IllegalArgumentException("Book not found");
-        }
-
-        if(user == null) {
-            throw new IllegalArgumentException("User not found");
-        }
+        Book book = jpaBookRepository.findById(request.bookId())
+                .orElseThrow(() -> new IllegalArgumentException("Book not found"));
+        User user = jpaUserRepository.findById(request.userId())
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
         Likes likes = Likes.builder()
                 .likesId(null)
@@ -88,22 +77,12 @@ public class LikesServiceImpl implements LikesService {
     @Override
     public LikesResponse updateLikeStatus(UpdateLikesRequest request) {
 
-        Book book = jpaBookRepository.findById(request.bookId()).orElse(null);
-        User user = jpaUserRepository.findById(request.userId()).orElse(null);
-
-        if(book == null) {
-            throw new IllegalArgumentException("Book not found");
-        }
-
-        if(user == null) {
-            throw new IllegalArgumentException("User not found");
-        }
-
-        Likes like = jpaLikesRepository.findByUserAndBook(user, book).orElse(null);
-
-        if(like == null) {
-            throw new IllegalArgumentException("Like not found");
-        }
+        Book book = jpaBookRepository.findById(request.bookId())
+                .orElseThrow(() -> new IllegalArgumentException("Book not found"));
+        User user = jpaUserRepository.findById(request.userId())
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        Likes like = jpaLikesRepository.findByUserAndBook(user, book)
+                .orElseThrow(() -> new IllegalArgumentException("Like not found"));
 
         Likes updatedLike = Likes.builder()
                 .likesId(like.getLikesId())
@@ -114,5 +93,4 @@ public class LikesServiceImpl implements LikesService {
 
         return toResponse(jpaLikesRepository.save(updatedLike));
     }
-
 }

@@ -1,9 +1,9 @@
 package com.yes255.yes255booksusersserver.application.service.impl;
 
 import com.yes255.yes255booksusersserver.application.service.CategoryService;
-import com.yes255.yes255booksusersserver.persistance.domain.Category;
+import com.yes255.yes255booksusersserver.persistence.domain.Category;
 import com.yes255.yes255booksusersserver.common.exception.CategoryNotFoundException;
-import com.yes255.yes255booksusersserver.persistance.repository.JpaCategoryRepository;
+import com.yes255.yes255booksusersserver.persistence.repository.JpaCategoryRepository;
 import com.yes255.yes255booksusersserver.presentation.dto.request.CreateCategoryRequest;
 import com.yes255.yes255booksusersserver.presentation.dto.request.UpdateCategoryRequest;
 import com.yes255.yes255booksusersserver.presentation.dto.response.CategoryResponse;
@@ -45,13 +45,9 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryResponse findCategory(long categoryId) {
 
-        Category category = jpaCategoryRepository.findById(categoryId).orElse(null);
-        if(category == null) {
-            throw new CategoryNotFoundException();
-        }
+        Category category = jpaCategoryRepository.findById(categoryId).orElseThrow(() -> new IllegalArgumentException("Category not found"));
 
         return toResponse(category);
-
     }
 
     @Transactional(readOnly = true)

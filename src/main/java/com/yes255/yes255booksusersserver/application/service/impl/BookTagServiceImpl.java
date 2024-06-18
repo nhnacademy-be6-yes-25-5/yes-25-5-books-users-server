@@ -1,12 +1,12 @@
 package com.yes255.yes255booksusersserver.application.service.impl;
 
 import com.yes255.yes255booksusersserver.application.service.BookTagService;
-import com.yes255.yes255booksusersserver.persistance.domain.Book;
-import com.yes255.yes255booksusersserver.persistance.domain.BookTag;
-import com.yes255.yes255booksusersserver.persistance.domain.Tag;
-import com.yes255.yes255booksusersserver.persistance.repository.JpaBookRepository;
-import com.yes255.yes255booksusersserver.persistance.repository.JpaBookTagRepository;
-import com.yes255.yes255booksusersserver.persistance.repository.JpaTagRepository;
+import com.yes255.yes255booksusersserver.persistence.domain.Book;
+import com.yes255.yes255booksusersserver.persistence.domain.BookTag;
+import com.yes255.yes255booksusersserver.persistence.domain.Tag;
+import com.yes255.yes255booksusersserver.persistence.repository.JpaBookRepository;
+import com.yes255.yes255booksusersserver.persistence.repository.JpaBookTagRepository;
+import com.yes255.yes255booksusersserver.persistence.repository.JpaTagRepository;
 import com.yes255.yes255booksusersserver.presentation.dto.response.BookTagResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -41,16 +41,8 @@ public class BookTagServiceImpl implements BookTagService {
     @Override
     public BookTagResponse createBookTag(Long bookId, Long tagId) {
 
-        if (Objects.isNull(tagId) || Objects.isNull(bookId)) {
-            throw new IllegalArgumentException("Book id and tag id cannot be null");
-        }
-
-        Book book = jpaBookRepository.findById(bookId).orElse(null);
-        Tag tag = jpaTagRepository.findById(tagId).orElse(null);
-
-        if(Objects.isNull(book) || Objects.isNull(tag)) {
-            throw new IllegalArgumentException("Book id and tag id cannot be null");
-        }
+        Book book = jpaBookRepository.findById(bookId).orElseThrow(() -> new IllegalArgumentException("Book not found"));
+        Tag tag = jpaTagRepository.findById(tagId).orElseThrow(() -> new IllegalArgumentException("Tag not found"));
 
         BookTag bookTag = BookTag.builder()
                 .bookTagId(null)

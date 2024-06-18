@@ -1,13 +1,13 @@
 package com.yes255.yes255booksusersserver.application.service.impl;
 
 import com.yes255.yes255booksusersserver.application.service.BookCategoryService;
-import com.yes255.yes255booksusersserver.persistance.domain.Book;
-import com.yes255.yes255booksusersserver.persistance.domain.BookCategory;
-import com.yes255.yes255booksusersserver.persistance.domain.Category;
+import com.yes255.yes255booksusersserver.persistence.domain.Book;
+import com.yes255.yes255booksusersserver.persistence.domain.BookCategory;
+import com.yes255.yes255booksusersserver.persistence.domain.Category;
 import com.yes255.yes255booksusersserver.common.exception.BookCategoryNotFoundException;
-import com.yes255.yes255booksusersserver.persistance.repository.JpaBookCategoryRepository;
-import com.yes255.yes255booksusersserver.persistance.repository.JpaBookRepository;
-import com.yes255.yes255booksusersserver.persistance.repository.JpaCategoryRepository;
+import com.yes255.yes255booksusersserver.persistence.repository.JpaBookCategoryRepository;
+import com.yes255.yes255booksusersserver.persistence.repository.JpaBookRepository;
+import com.yes255.yes255booksusersserver.persistence.repository.JpaCategoryRepository;
 import com.yes255.yes255booksusersserver.presentation.dto.request.UpdateBookCategoryRequest;
 import com.yes255.yes255booksusersserver.presentation.dto.response.BookCategoryResponse;
 import lombok.RequiredArgsConstructor;
@@ -37,12 +37,8 @@ public class BookCategoryServiceImpl implements BookCategoryService {
     @Override
     public BookCategoryResponse createBookCategory(Long bookId, Long categoryId) {
 
-        Book book = jpaBookRepository.findById(bookId).orElse(null);
-        Category category = jpaCategoryRepository.findById(categoryId).orElse(null);
-
-        if(book == null || category == null) {
-            throw new IllegalArgumentException();
-        }
+        Book book = jpaBookRepository.findById(bookId).orElseThrow(() -> new IllegalArgumentException("Book not found"));
+        Category category = jpaCategoryRepository.findById(categoryId).orElseThrow(() -> new IllegalArgumentException("Category not found"));
 
         BookCategory bookCategory = BookCategory.builder()
                         .bookCategoryId(null)
@@ -57,11 +53,7 @@ public class BookCategoryServiceImpl implements BookCategoryService {
     @Transactional(readOnly = true)
     public BookCategoryResponse findBookCategory(Long bookCategoryId) {
 
-        BookCategory bookCategory = jpaBookCategoryRepository.findById(bookCategoryId).orElse(null);
-
-        if(bookCategory == null) {
-            throw new BookCategoryNotFoundException();
-        }
+        BookCategory bookCategory = jpaBookCategoryRepository.findById(bookCategoryId).orElseThrow(() -> new IllegalArgumentException("Book category not found"));
 
         return toResponse(bookCategory);
     }

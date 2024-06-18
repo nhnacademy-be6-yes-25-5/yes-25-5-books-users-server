@@ -1,6 +1,6 @@
-package com.yes255.yes255booksusersserver.persistance.repository;
+package com.yes255.yes255booksusersserver.persistence.repository;
 
-import com.yes255.yes255booksusersserver.persistance.domain.User;
+import com.yes255.yes255booksusersserver.persistence.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface JpaUserRepository extends JpaRepository<User, Long> {

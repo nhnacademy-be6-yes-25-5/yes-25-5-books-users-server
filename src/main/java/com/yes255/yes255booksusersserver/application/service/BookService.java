@@ -9,12 +9,8 @@ import java.util.List;
 public interface BookService {
 
     BookResponse createBook(CreateBookRequest createBookRequest);
-
     BookResponse findBook(long bookId);
-
     List<BookResponse> findAllBooks();
-
     BookResponse updateBook(UpdateBookRequest updateBookRequest);
-
     void deleteBook(long bookId);
 }
