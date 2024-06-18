@@ -4,7 +4,8 @@ import com.yes255.yes255booksusersserver.persistence.domain.Tag;
 import jakarta.validation.constraints.NotBlank;
 
 public record CreateTagRequest(
-        @NotBlank
+
+        @NotBlank(message = "태그 이름은 필수 입력 항목입니다.")
         String tagName
 ) {
     public Tag toEntity() {

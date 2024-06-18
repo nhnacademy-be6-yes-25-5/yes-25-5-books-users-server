@@ -6,10 +6,11 @@ import com.yes255.yes255booksusersserver.persistence.domain.Tag;
 import jakarta.validation.constraints.NotNull;
 
 public record CreateBookTagRequest(
-        @NotNull
+
+        @NotNull(message = "책은 필수 입력 항목입니다.")
         Book book,
 
-        @NotNull
+        @NotNull(message = "태그는 필수 입력 항목입니다.")
         Tag tag
 ) {
     public BookTag toEntity() {

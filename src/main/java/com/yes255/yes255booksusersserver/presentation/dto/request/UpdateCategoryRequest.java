@@ -5,10 +5,11 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record UpdateCategoryRequest(
-        @NotNull
+
+        @NotNull(message = "카테고리 아이디는 필수 입력 항목입니다.")
         long categoryId,
 
-        @NotBlank
+        @NotBlank(message = "카테고리 이름은 필수 입력 항목입니다.")
         String categoryName,
 
         Category parentCategory

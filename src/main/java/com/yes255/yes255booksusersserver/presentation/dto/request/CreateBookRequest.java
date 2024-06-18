@@ -10,11 +10,11 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public record CreateBookRequest(
-        @NotNull
+        @NotNull(message = "ISBN이 없습니다.")
         @Size(min = 10, max = 13)
         String bookIsbn,
 
-        @NotBlank
+        @NotBlank(message = "책 제목은 필수 입력항목입니다.")
         String bookName,
 
         String bookDescription,
@@ -23,18 +23,20 @@ public record CreateBookRequest(
 
         String bookPublisher,
 
-        @PastOrPresent
+        @PastOrPresent(message = "출판 일자는 미래일 수 없습니다.")
         Date bookPublishDate,
 
-        @NotNull
+        @NotNull(message = "책 가격은 필수 입력 항목입니다.")
         BigDecimal bookPrice,
 
-        @NotNull
+        @NotNull(message = "책 판매 가격은 필수 입력 항목입니다.")
         BigDecimal bookSellingPrice,
 
         String bookImage,
 
-        @NotNull Integer quantity)
+        @NotNull(message = "수량은 필수 입력 항목입니다.")
+        Integer quantity
+)
 {
     public Book toEntity() {
         return Book.builder()

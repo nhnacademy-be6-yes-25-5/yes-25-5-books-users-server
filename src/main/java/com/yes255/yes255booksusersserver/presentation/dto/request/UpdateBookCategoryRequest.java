@@ -6,13 +6,14 @@ import com.yes255.yes255booksusersserver.persistence.domain.Category;
 import jakarta.validation.constraints.NotNull;
 
 public record UpdateBookCategoryRequest(
-        @NotNull
+
+        @NotNull(message = "북 카테고리 아이디는 필수 입력 항목입니다.")
         Long bookCategoryId,
 
-        @NotNull
+        @NotNull(message = "업데이트 할 책은 필수 입력 항목입니다.")
         Book book,
 
-        @NotNull
+        @NotNull(message = "업데이트 할 카테고리는 필수 입력 항목입니다.")
         Category category) {
 
     public BookCategory toEntity() {
