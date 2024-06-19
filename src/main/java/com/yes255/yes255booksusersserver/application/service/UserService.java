@@ -1,14 +1,32 @@
 package com.yes255.yes255booksusersserver.application.service;
 
-import com.yes255.yes255booksusersserver.persistance.domain.User;
-import com.yes255.yes255booksusersserver.presentation.dto.request.CreateUserRequest;
-import com.yes255.yes255booksusersserver.presentation.dto.response.CreateUserResponse;
+import com.yes255.yes255booksusersserver.presentation.dto.request.*;
+import com.yes255.yes255booksusersserver.presentation.dto.response.*;
+import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 public interface UserService {
 
-    User getCurrentUser(Long userId);
+    LoginUserResponse findLoginUserByEmail(LoginUserRequest email);
 
-    CreateUserResponse createUser(CreateUserRequest userRequest);
+    UpdateUserResponse findUserByUserId(Long userId);
 
-//    public User updateUser(User user);
+    List<FindUserResponse> findAllUserEmailByUserNameByUserPhone(FindEmailRequest emailRequest, Pageable pageable);
+
+    UserResponse createUser(CreateUserRequest userRequest);
+
+    UpdateUserResponse updateUser(Long userId, UpdateUserRequest userRequest);
+
+    void deleteUser(Long userId, DeleteUserRequest userRequest);
+
+    void updateLastLoginDate(Long userId);
+
+    boolean loginUserByEmailByPassword(LoginUserRequest loginUserRequest);
+
+    boolean findUserPasswordByEmailByName(FindPasswordRequest passwordRequest);
+
+    boolean setUserPasswordByUserId(UpdatePasswordRequest passwordRequest);
+
+    void createRecord();
 }
