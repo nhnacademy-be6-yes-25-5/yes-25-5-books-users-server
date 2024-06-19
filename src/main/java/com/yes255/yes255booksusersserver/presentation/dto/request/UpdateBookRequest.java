@@ -5,10 +5,12 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Builder
 public record UpdateBookRequest(
 
         @NotNull(message = "책 아이디는 필수 입력 항목입니다.")

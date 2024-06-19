@@ -3,6 +3,7 @@ package com.yes255.yes255booksusersserver.presentation.controller;
 import com.yes255.yes255booksusersserver.application.service.BookCategoryService;
 import com.yes255.yes255booksusersserver.application.service.BookService;
 import com.yes255.yes255booksusersserver.application.service.BookTagService;
+import com.yes255.yes255booksusersserver.common.exception.QuantityInsufficientException;
 import com.yes255.yes255booksusersserver.common.exception.ValidationFailedException;
 import com.yes255.yes255booksusersserver.presentation.dto.request.CreateBookRequest;
 import com.yes255.yes255booksusersserver.presentation.dto.request.UpdateBookRequest;
@@ -85,6 +86,35 @@ public class BookController {
         }
 
         return ResponseEntity.ok(response);
+    }
+
+    @PatchMapping("/books/{bookId}")
+    public ResponseEntity<BookResponse> updateQuantity(@PathVariable Long bookId, @RequestParam(value = "quantity") Integer quantity) {
+
+        BookResponse book = bookService.findBook(bookId);
+
+        if(quantity > book.bookQuantity()) {
+            throw new QuantityInsufficientException();
+        }
+
+        UpdateBookRequest updatedBook = UpdateBookRequest.builder()
+                .bookId(book.bookId())
+                .bookName(book.bookName())
+                .bookDescription(book.bookDescription())
+                .bookAuthor(book.bookAuthor())
+                .bookPublisher(book.bookPublisher())
+                .bookPublishDate(book.bookPublishDate())
+                .bookPrice(book.bookPrice())
+                .bookSellingPrice(book.bookSellingPrice())
+                .bookImage(book.bookImage())
+                .quantity(book.bookQuantity() - quantity)
+                .reviewCount(book.reviewCount())
+                .hitsCount(book.hitsCount())
+                .searchCount(book.searchCount())
+                .build();
+
+        return ResponseEntity.ok(bookService.updateBook(updatedBook));
+
     }
 
     @DeleteMapping("/books/{bookId}")
