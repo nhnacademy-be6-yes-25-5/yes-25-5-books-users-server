@@ -1,6 +1,6 @@
 package com.yes255.yes255booksusersserver.application.service;
 
-import com.yes255.yes255booksusersserver.persistence.domain.User;
+import com.yes255.yes255booksusersserver.persistance.domain.User;
 import com.yes255.yes255booksusersserver.presentation.dto.request.CreateUserRequest;
 import com.yes255.yes255booksusersserver.presentation.dto.response.CreateUserResponse;
 

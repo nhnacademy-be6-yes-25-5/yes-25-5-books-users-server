@@ -1,4 +1,4 @@
-package com.yes255.yes255booksusersserver.persistence.domain;
+package com.yes255.yes255booksusersserver.persistance.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

@@ -1,7 +1,7 @@
 package com.yes255.yes255booksusersserver.application.service.impl;
 import com.yes255.yes255booksusersserver.application.service.CustomerService;
-import com.yes255.yes255booksusersserver.persistence.repository.JpaCustomerRepository;
-import com.yes255.yes255booksusersserver.persistence.domain.Customer;
+import com.yes255.yes255booksusersserver.persistance.repository.JpaCustomerRepository;
+import com.yes255.yes255booksusersserver.persistance.domain.Customer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

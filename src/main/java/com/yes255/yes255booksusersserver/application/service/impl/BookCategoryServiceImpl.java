@@ -1,13 +1,12 @@
 package com.yes255.yes255booksusersserver.application.service.impl;
 
 import com.yes255.yes255booksusersserver.application.service.BookCategoryService;
-import com.yes255.yes255booksusersserver.persistence.domain.Book;
-import com.yes255.yes255booksusersserver.persistence.domain.BookCategory;
-import com.yes255.yes255booksusersserver.persistence.domain.Category;
-import com.yes255.yes255booksusersserver.common.exception.BookCategoryNotFoundException;
-import com.yes255.yes255booksusersserver.persistence.repository.JpaBookCategoryRepository;
-import com.yes255.yes255booksusersserver.persistence.repository.JpaBookRepository;
-import com.yes255.yes255booksusersserver.persistence.repository.JpaCategoryRepository;
+import com.yes255.yes255booksusersserver.persistance.domain.Book;
+import com.yes255.yes255booksusersserver.persistance.domain.BookCategory;
+import com.yes255.yes255booksusersserver.persistance.domain.Category;
+import com.yes255.yes255booksusersserver.persistance.repository.JpaBookCategoryRepository;
+import com.yes255.yes255booksusersserver.persistance.repository.JpaBookRepository;
+import com.yes255.yes255booksusersserver.persistance.repository.JpaCategoryRepository;
 import com.yes255.yes255booksusersserver.presentation.dto.request.UpdateBookCategoryRequest;
 import com.yes255.yes255booksusersserver.presentation.dto.response.BookCategoryResponse;
 import lombok.RequiredArgsConstructor;

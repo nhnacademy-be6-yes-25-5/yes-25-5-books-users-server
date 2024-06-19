@@ -1,6 +1,6 @@
 package com.yes255.yes255booksusersserver.presentation.dto.request;
 
-import com.yes255.yes255booksusersserver.persistence.domain.Tag;
+import com.yes255.yes255booksusersserver.persistance.domain.Tag;
 import jakarta.validation.constraints.NotBlank;
 
 public record CreateTagRequest(

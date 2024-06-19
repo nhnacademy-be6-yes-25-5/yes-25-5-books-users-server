@@ -1,8 +1,8 @@
 package com.yes255.yes255booksusersserver.application.service.impl;
 
 import com.yes255.yes255booksusersserver.application.service.UserAddressService;
-import com.yes255.yes255booksusersserver.persistence.repository.JpaUserAddressRepository;
-import com.yes255.yes255booksusersserver.persistence.domain.UserAddress;
+import com.yes255.yes255booksusersserver.persistance.repository.JpaUserAddressRepository;
+import com.yes255.yes255booksusersserver.persistance.domain.UserAddress;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

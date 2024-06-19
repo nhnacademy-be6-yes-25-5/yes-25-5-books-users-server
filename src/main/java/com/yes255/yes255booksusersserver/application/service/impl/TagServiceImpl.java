@@ -1,8 +1,8 @@
 package com.yes255.yes255booksusersserver.application.service.impl;
 
 import com.yes255.yes255booksusersserver.application.service.TagService;
-import com.yes255.yes255booksusersserver.persistence.domain.Tag;
-import com.yes255.yes255booksusersserver.persistence.repository.JpaTagRepository;
+import com.yes255.yes255booksusersserver.persistance.domain.Tag;
+import com.yes255.yes255booksusersserver.persistance.repository.JpaTagRepository;
 import com.yes255.yes255booksusersserver.presentation.dto.request.CreateTagRequest;
 import com.yes255.yes255booksusersserver.presentation.dto.request.UpdateTagRequest;
 import com.yes255.yes255booksusersserver.presentation.dto.response.TagResponse;

@@ -1,6 +1,6 @@
 package com.yes255.yes255booksusersserver.presentation.dto.request;
 
-import com.yes255.yes255booksusersserver.persistence.domain.Book;
+import com.yes255.yes255booksusersserver.persistance.domain.Book;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;

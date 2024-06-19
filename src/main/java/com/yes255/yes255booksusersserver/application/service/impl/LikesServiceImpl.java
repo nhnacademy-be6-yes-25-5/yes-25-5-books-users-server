@@ -1,12 +1,12 @@
 package com.yes255.yes255booksusersserver.application.service.impl;
 
 import com.yes255.yes255booksusersserver.application.service.LikesService;
-import com.yes255.yes255booksusersserver.persistence.domain.Book;
-import com.yes255.yes255booksusersserver.persistence.domain.Likes;
-import com.yes255.yes255booksusersserver.persistence.domain.User;
-import com.yes255.yes255booksusersserver.persistence.repository.JpaBookRepository;
-import com.yes255.yes255booksusersserver.persistence.repository.JpaLikesRepository;
-import com.yes255.yes255booksusersserver.persistence.repository.JpaUserRepository;
+import com.yes255.yes255booksusersserver.persistance.domain.Book;
+import com.yes255.yes255booksusersserver.persistance.domain.Likes;
+import com.yes255.yes255booksusersserver.persistance.domain.User;
+import com.yes255.yes255booksusersserver.persistance.repository.JpaBookRepository;
+import com.yes255.yes255booksusersserver.persistance.repository.JpaLikesRepository;
+import com.yes255.yes255booksusersserver.persistance.repository.JpaUserRepository;
 import com.yes255.yes255booksusersserver.presentation.dto.request.CreateLikesRequest;
 import com.yes255.yes255booksusersserver.presentation.dto.request.UpdateLikesRequest;
 import com.yes255.yes255booksusersserver.presentation.dto.response.LikesResponse;

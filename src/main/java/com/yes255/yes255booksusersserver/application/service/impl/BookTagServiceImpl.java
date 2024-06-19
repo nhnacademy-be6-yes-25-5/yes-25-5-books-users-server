@@ -1,19 +1,18 @@
 package com.yes255.yes255booksusersserver.application.service.impl;
 
 import com.yes255.yes255booksusersserver.application.service.BookTagService;
-import com.yes255.yes255booksusersserver.persistence.domain.Book;
-import com.yes255.yes255booksusersserver.persistence.domain.BookTag;
-import com.yes255.yes255booksusersserver.persistence.domain.Tag;
-import com.yes255.yes255booksusersserver.persistence.repository.JpaBookRepository;
-import com.yes255.yes255booksusersserver.persistence.repository.JpaBookTagRepository;
-import com.yes255.yes255booksusersserver.persistence.repository.JpaTagRepository;
+import com.yes255.yes255booksusersserver.persistance.domain.Book;
+import com.yes255.yes255booksusersserver.persistance.domain.BookTag;
+import com.yes255.yes255booksusersserver.persistance.domain.Tag;
+import com.yes255.yes255booksusersserver.persistance.repository.JpaBookRepository;
+import com.yes255.yes255booksusersserver.persistance.repository.JpaBookTagRepository;
+import com.yes255.yes255booksusersserver.persistance.repository.JpaTagRepository;
 import com.yes255.yes255booksusersserver.presentation.dto.response.BookTagResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor

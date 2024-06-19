@@ -1,6 +1,6 @@
-package com.yes255.yes255booksusersserver.persistence.repository;
+package com.yes255.yes255booksusersserver.persistance.repository;
 
-import com.yes255.yes255booksusersserver.persistence.domain.UserState;
+import com.yes255.yes255booksusersserver.persistance.domain.UserState;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface JpaUserStateRepository extends JpaRepository<UserState, Long> {

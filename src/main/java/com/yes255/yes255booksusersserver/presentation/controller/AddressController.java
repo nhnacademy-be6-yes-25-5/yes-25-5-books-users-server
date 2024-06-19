@@ -1,7 +1,7 @@
 package com.yes255.yes255booksusersserver.presentation.controller;
 
 import com.yes255.yes255booksusersserver.application.service.AddressService;
-import com.yes255.yes255booksusersserver.persistence.domain.Address;
+import com.yes255.yes255booksusersserver.persistance.domain.Address;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
