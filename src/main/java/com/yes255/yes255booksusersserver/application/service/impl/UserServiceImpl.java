@@ -1,6 +1,7 @@
 package com.yes255.yes255booksusersserver.application.service.impl;
 
 import com.yes255.yes255booksusersserver.application.service.UserService;
+import com.yes255.yes255booksusersserver.application.service.queue.producer.MessageProducer;
 import com.yes255.yes255booksusersserver.common.exception.*;
 import com.yes255.yes255booksusersserver.common.exception.payload.ErrorStatus;
 import com.yes255.yes255booksusersserver.infrastructure.adaptor.CouponAdaptor;
@@ -42,6 +43,8 @@ public class UserServiceImpl implements UserService {
 
     private final PasswordEncoder passwordEncoder;
     private final CouponAdaptor couponAdaptor;
+
+    private final MessageProducer messageProducer;
 
     // 로그인을 위한 정보 반환
     @Transactional
@@ -203,9 +206,8 @@ public class UserServiceImpl implements UserService {
             pointRepository.save(point);
         }
 
-        // todo : 웰컴 쿠폰 주석 해제
         // 회원 가입 쿠폰 지급
-//        couponAdaptor.issueWelcomeCoupon(user.getUserId());
+        messageProducer.sendWelcomeCouponMessage(user.getUserId());
 
         log.info("User : {}", user);
 
@@ -343,5 +345,12 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
+    @Override
+    public List<Long> findUserIdsWithBirthdaysInCurrentMonth() {
+        int currentMonth = LocalDate.now().getMonthValue();
+        return userRepository.findByUserBirthMonth(currentMonth).stream()
+                .map(User::getUserId)
+                .collect(Collectors.toList());
+    }
 
 }

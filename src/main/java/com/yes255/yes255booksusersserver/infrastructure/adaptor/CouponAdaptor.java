@@ -11,4 +11,7 @@ public interface CouponAdaptor {
 
     @PostMapping("/expired")
     ExpiredCouponUserResponse getCouponExpiredDate(@RequestParam("couponId") Long couponId);
+
+    @PostMapping("/issueWelcomeCoupon")
+    void issueWelcomeCoupon(@RequestParam("userId") Long userId);
 }

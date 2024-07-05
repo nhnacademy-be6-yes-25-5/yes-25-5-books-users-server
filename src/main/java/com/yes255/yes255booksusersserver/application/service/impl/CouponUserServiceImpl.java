@@ -40,4 +40,43 @@ public class CouponUserServiceImpl implements CouponUserService {
                         .user(user)
                         .build());
     }
+
+    @Override
+    public void createCouponUserForBirthday(Long userId) {
+        // 생일 쿠폰 정책 ID를 하드코딩하거나 설정 파일에서 불러옵니다.
+        Long birthdayCouponPolicyId = 1L;
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserException(ErrorStatus.toErrorStatus("회원이 존재하지 않습니다.", 400, LocalDateTime.now())));
+
+        ExpiredCouponUserResponse couponUserResponse = couponAdaptor.getCouponExpiredDate(birthdayCouponPolicyId);
+
+        couponUserRepository.save(CouponUser.builder()
+                .userCouponType("생일")
+                .userCouponStatus(CouponUser.UserCouponStatus.ACTIVE)
+                .couponExpiredAt(couponUserResponse.couponExpiredAt())
+                .couponId(birthdayCouponPolicyId)
+                .user(user)
+                .build());
+    }
+
+    @Override
+    public void createCouponUserForWelcome(Long userId) {
+        // 웰컴 쿠폰 정책 ID를 하드코딩하거나 설정 파일에서 불러옵니다.
+        Long welcomeCouponPolicyId = 2L;
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserException(ErrorStatus.toErrorStatus("회원이 존재하지 않습니다.", 400, LocalDateTime.now())));
+
+        ExpiredCouponUserResponse couponUserResponse = couponAdaptor.getCouponExpiredDate(welcomeCouponPolicyId);
+
+        couponUserRepository.save(CouponUser.builder()
+                .userCouponType("웰컴")
+                .userCouponStatus(CouponUser.UserCouponStatus.ACTIVE)
+                .couponExpiredAt(couponUserResponse.couponExpiredAt())
+                .couponId(welcomeCouponPolicyId)
+                .user(user)
+                .build());
+    }
+
 }
