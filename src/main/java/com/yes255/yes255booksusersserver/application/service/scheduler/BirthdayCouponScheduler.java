@@ -22,31 +22,29 @@ public class BirthdayCouponScheduler {
     private final MessageProducer messageProducer;
     private final RedisTemplate<String, String> redisTemplate;
 
-    @Scheduled(cron = "0 0 0 * * *")
+    @Scheduled(cron = "0 0 0 1 * *")
     public void scheduleBirthdayCoupons() {
-
         LocalDate today = LocalDate.now();
-        int month = today.getMonthValue();
-        int day = today.getDayOfMonth();
+        int currentMonth = today.getMonthValue();
 
+        List<User> usersWithBirthdayThisMonth = userRepository.findUsersByBirthMonth(currentMonth);
 
-        List<User> usersWithBirthdayToday = userRepository.findUsersByBirthMonthAndDay(month, day);
-
-        if (usersWithBirthdayToday.isEmpty()) {
-        } else {
-            for (User user : usersWithBirthdayToday) {
-                String redisKey = "birthday_coupon_issued_" + user.getUserId();
-                Boolean isCouponAlreadyIssued = redisTemplate.hasKey(redisKey);
-
-                if (Boolean.TRUE.equals(isCouponAlreadyIssued)) {
-                    continue;
-                }
-
-                messageProducer.sendBirthdayCouponMessage(user.getUserId());
-
-                redisTemplate.opsForValue().set(redisKey, "true", 31, TimeUnit.DAYS);
-            }
+        if (usersWithBirthdayThisMonth.isEmpty()) {
+            log.info("No users with birthday this month");
+            return;
         }
 
+        for (User user : usersWithBirthdayThisMonth) {
+            String redisKey = "birthday_coupon_issued_" + user.getUserId();
+            Boolean isCouponAlreadyIssued = redisTemplate.hasKey(redisKey);
+
+            if (Boolean.TRUE.equals(isCouponAlreadyIssued)) {
+                continue;
+            }
+            messageProducer.sendBirthdayCouponMessage(user.getUserId());
+            redisTemplate.opsForValue().set(redisKey, "true", 31, TimeUnit.DAYS);
+        }
+
+        log.info("Birthday coupon scheduler completed for month: {}", currentMonth);
     }
 }
